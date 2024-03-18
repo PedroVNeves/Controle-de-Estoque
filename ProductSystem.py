@@ -47,7 +47,7 @@ def atualizar(nome):
         Rows = list(Leitor)
         for Row_ in Rows:
             if (Row_[0]) ==nome:
-                escolha = input("\n\n*************************************************\nPara atualizar o valor, digite: 1\nPara atualizar a quantidade, digite: 2\nPara atualizar o nome, digite: 3\nPara atualizar o valor e a quantidade, digite: 4\n*************************************************")
+                escolha = input("\n\n*************************************************\nPara atualizar o valor, digite: 1\nPara atualizar a quantidade, digite: 2\nPara atualizar o nome, digite: 3\nPara atualizar o valor e a quantidade, digite: 4\nPara adicionar um banco de dados já existente digite: 5\n*************************************************")
                 if escolha == "1":
                     preco = input("Qual o valor atual?")
                     Row_[1] ="R$" + preco
@@ -76,3 +76,13 @@ while True:
         atualizar(nome)
     elif action == "4":
         count_product()
+    elif action == "5":
+        caminho = input("Diretório do arquivo csv")
+        with open(caminho,"r",encoding="utf8",newline ="") as arquivonovo:
+            LeitorCaminho = csv.reader(arquivonovo)
+            RowsCaminho = list(LeitorCaminho)
+            with open("listaProdutos.csv","w",encoding="utf8",newline="") as arquivo:
+                for Row_ in RowsCaminho:
+                    writer = csv.writer(arquivo)
+                    writer.writerow(Row_)
+
